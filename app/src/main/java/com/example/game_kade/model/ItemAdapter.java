@@ -19,8 +19,8 @@ import org.w3c.dom.Text;
 import java.util.List;
 
 public class ItemAdapter extends ArrayAdapter<Item> {
-    public ItemAdapter(@NonNull Context context, int resource, int textViewResourceId, @NonNull List<Item> objects) {
-        super(context, resource, textViewResourceId, objects);
+    public ItemAdapter(@NonNull Context context, List<Item> objects) {
+        super(context,0,objects);
     }
 
     @NonNull
