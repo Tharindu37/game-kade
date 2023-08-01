@@ -10,7 +10,32 @@
         android:id="@+id/textView3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Item"
-        tools:layout_editor_absoluteX="152dp"
-        tools:layout_editor_absoluteY="226dp" />
+        android:layout_marginStart="168dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="183dp"
+        android:text="Coca Cola"
+        android:textSize="24sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <androidx.cardview.widget.CardView
+        android:foregroundGravity="center"
+        app:cardCornerRadius="20dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        tools:layout_editor_absoluteX="8dp"
+
+        tools:layout_editor_absoluteY="68dp">
+
+        <ImageView
+            android:id="@+id/imageView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            tools:layout_editor_absoluteX="144dp"
+            tools:layout_editor_absoluteY="83dp"
+            tools:srcCompat="@tools:sample/avatars" />
+    </androidx.cardview.widget.CardView>
+
+
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -10,9 +10,20 @@ import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.Toast;
 
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.JsonArrayRequest;
+import com.android.volley.toolbox.Volley;
 import com.example.game_kade.model.Category;
+import com.example.game_kade.model.CategoryAdapter;
 import com.example.game_kade.model.Item;
 import com.example.game_kade.model.ItemAdapter;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.util.ArrayList;
 
@@ -38,7 +49,39 @@ public class Items extends AppCompatActivity {
             items.setAdapter(adapter);
             // Retrieve the value of "CATEGORY_ID" from the Intent
             String categoryId = intent.getStringExtra("CATEGORY_ID");
+            //api call
+            String url = "https://game-kade-api.up.railway.app/items"+categoryId;
+            RequestQueue requestQueue = Volley.newRequestQueue(this);
 
+            JsonArrayRequest jsonArrayRequest = new JsonArrayRequest(Request.Method.GET, url, null,
+                    new Response.Listener<JSONArray>() {
+                        @Override
+                        public void onResponse(JSONArray response) {
+                            // This method will be called when the request is successful and you have received the JSON array response
+                            try {
+                                // Iterate through the JSON array
+                                for (int i = 0; i < response.length(); i++) {
+                                    JSONObject categoryObject = response.getJSONObject(i);
+
+
+                                }
+
+                            } catch (JSONException e) {
+                                e.printStackTrace();
+                            }
+                        }
+                    },
+                    new Response.ErrorListener() {
+                        @Override
+                        public void onErrorResponse(VolleyError error) {
+                            // This method will be called when there is an error with the request
+                            Toast.makeText(getApplicationContext(), "Error fetching categories: " + error.getMessage(), Toast.LENGTH_SHORT).show();
+                        }
+                    });
+
+            requestQueue.add(jsonArrayRequest);
+
+            //end api call
             // Now you have the categoryId value, and you can use it as needed
             // For example, you can use it to load items related to the specific category from a database or API
 
