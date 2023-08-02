@@ -41,7 +41,7 @@ public class Categories extends AppCompatActivity {
         ArrayList<Category> arrayOfCategory = new ArrayList<>();
 
         //api call
-        String url = "https://game-kade-api.up.railway.app/categories";
+        String url = "http://10.0.2.2:3000/categories";
         RequestQueue requestQueue = Volley.newRequestQueue(this);
 
         JsonArrayRequest jsonArrayRequest = new JsonArrayRequest(Request.Method.GET, url, null,
@@ -56,9 +56,11 @@ public class Categories extends AppCompatActivity {
                                 // Retrieve the values from each category object
                                 int categoryId = categoryObject.getInt("id");
                                 String categoryName = categoryObject.getString("name");
+                                String categoryImage=categoryObject.getString("url");
+                                System.out.println("eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee"+categoryImage);
                                 // ... Process the data here as per your requirement
 //                                System.out.println("nameeeeeeeeeeeeeeeee"+categoryName);
-                                arrayOfCategory.add(new Category(categoryName,"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQBAOv6mUQnO-CL5395uIacb694bjsJ4T7C5Jy5m0A&s",String.valueOf(categoryId)));
+                                arrayOfCategory.add(new Category(categoryName,categoryImage,String.valueOf(categoryId)));
                             }
                             CategoryAdapter adapter=new CategoryAdapter(getApplicationContext(),arrayOfCategory);
                             categories.setAdapter(adapter);

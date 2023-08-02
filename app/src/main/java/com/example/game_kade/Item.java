@@ -33,9 +33,9 @@ public class Item extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_item);
 
-        name=findViewById(R.id.txtItemName);
-        description=findViewById(R.id.txtDescription);
-        price=findViewById(R.id.txtPrice);
+        name=findViewById(R.id.texItemName);
+        description=findViewById(R.id.textDescription);
+        price=findViewById(R.id.txtItemPrice);
         itemImage=findViewById(R.id.imgItem);
 
         Intent intent = getIntent();

@@ -8,14 +8,39 @@
     tools:context=".MainActivity">
 
     <TextView
+        android:id="@+id/txtMain"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:fontFamily="@font/akaya_telivigala"
-        android:text="Game Kade"
-        android:textSize="60sp"
+        android:text="Where the every bite tells a Story"
+        android:textSize="16sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.851"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.668" />
+
+    <TextView
+        android:id="@+id/txtEat"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/akaya_telivigala"
+        android:text="Eat 'N More"
+        android:textSize="48sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.638" />
+
+    <ImageView
+        android:id="@+id/imgMain"
+        android:layout_width="434dp"
+        android:layout_height="574dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/eat" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
