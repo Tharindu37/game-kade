@@ -4,6 +4,8 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.android.volley.Request;
@@ -13,15 +15,28 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.JsonRequest;
 import com.android.volley.toolbox.Volley;
+import com.bumptech.glide.Glide;
 
+import org.json.JSONException;
 import org.json.JSONObject;
+import org.w3c.dom.Text;
 
 public class Item extends AppCompatActivity {
+
+    private TextView name;
+    private TextView description;
+    private TextView price;
+    private ImageView itemImage;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_item);
+
+        name=findViewById(R.id.txtItemName);
+        description=findViewById(R.id.txtDescription);
+        price=findViewById(R.id.txtPrice);
+        itemImage=findViewById(R.id.imgItem);
 
         Intent intent = getIntent();
         if (intent.hasExtra("ITEM_ID")){
@@ -34,8 +49,15 @@ public class Item extends AppCompatActivity {
                     new Response.Listener<JSONObject>() {
                         @Override
                         public void onResponse(JSONObject response) {
-                            String value = response.toString();
-                            Toast.makeText(getApplicationContext(), "Category ID: " + value, Toast.LENGTH_SHORT).show();
+                            try {
+                                name.setText(response.getString("item-name"));
+                                price.setText(response.getString("price"));
+                                description.setText(response.getString("description"));
+                                Glide.with(getApplicationContext()).load(response.getString("imageURL")).into(itemImage);
+                            } catch (JSONException e) {
+                                throw new RuntimeException(e);
+                            }
+
                         }
                     },
                     new Response.ErrorListener() {
