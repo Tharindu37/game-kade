@@ -25,7 +25,6 @@ public class MainActivity extends AppCompatActivity {
         eatName=findViewById(R.id.txtEat);
         mainText=findViewById(R.id.txtMain);
 
-
         //Animations
         topAnim= AnimationUtils.loadAnimation(this,R.anim.top_animation);
         bottomAnim=AnimationUtils.loadAnimation(this,R.anim.bottom_animation);

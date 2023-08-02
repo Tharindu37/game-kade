@@ -7,20 +7,24 @@
     tools:context=".Items">
 
     <TextView
+        android:background="#206A5D"
+        android:textColor="@color/white"
         android:id="@+id/textView2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="16dp"
+        android:layout_width="413dp"
+        android:layout_height="70dp"
+        android:layout_marginStart="1dp"
+        android:paddingStart="20dp"
+        android:paddingTop="20dp"
         android:text="Items"
-        android:textSize="20sp"
+        android:textSize="24sp"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <ListView
         android:id="@+id/lstItems"
-        android:layout_width="409dp"
-        android:layout_height="686dp"
+        android:layout_width="408dp"
+        android:layout_height="719dp"
         android:layout_marginTop="16dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

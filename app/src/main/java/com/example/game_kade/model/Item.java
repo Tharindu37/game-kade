@@ -6,9 +6,9 @@ public class Item {
     private String name;
     private String description;
     private String url;
-    private double price;
+    private String price;
 
-    public Item(String id, String categoryId, String name, String description, String url, double price) {
+    public Item(String id, String categoryId, String name, String description, String url, String price) {
         this.id = id;
         this.categoryId = categoryId;
         this.name = name;
@@ -37,7 +37,7 @@ public class Item {
         return url;
     }
 
-    public double getPrice() {
+    public String getPrice() {
         return price;
     }
 }

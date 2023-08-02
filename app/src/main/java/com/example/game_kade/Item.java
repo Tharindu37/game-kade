@@ -4,6 +4,9 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
+import android.view.WindowManager;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -23,6 +26,7 @@ import org.w3c.dom.Text;
 
 public class Item extends AppCompatActivity {
 
+    private Button buyButton;
     private TextView name;
     private TextView description;
     private TextView price;
@@ -31,20 +35,21 @@ public class Item extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.activity_item);
 
         name=findViewById(R.id.texItemName);
         description=findViewById(R.id.textDescription);
         price=findViewById(R.id.txtItemPrice);
         itemImage=findViewById(R.id.imgItem);
+        buyButton=findViewById(R.id.btnBuy);
 
         Intent intent = getIntent();
         if (intent.hasExtra("ITEM_ID")){
             String itemId = intent.getStringExtra("ITEM_ID");
             //api call
-            String url="https://game-kade-api.up.railway.app/items/"+itemId;
+            String url="http://10.0.2.2:3000/items/"+itemId;
             RequestQueue requestQueue = Volley.newRequestQueue(this);
-
             JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.GET, url, null,
                     new Response.Listener<JSONObject>() {
                         @Override
@@ -57,7 +62,6 @@ public class Item extends AppCompatActivity {
                             } catch (JSONException e) {
                                 throw new RuntimeException(e);
                             }
-
                         }
                     },
                     new Response.ErrorListener() {
@@ -68,10 +72,16 @@ public class Item extends AppCompatActivity {
                     });
 
             requestQueue.add(jsonObjectRequest);
-
-            Toast.makeText(this, "Category ID: " + itemId, Toast.LENGTH_SHORT).show();
         }else {
             Toast.makeText(this, "Category ID not found.", Toast.LENGTH_SHORT).show();
         }
+        buyButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(getApplicationContext(), "Buying Successful", Toast.LENGTH_SHORT).show();
+                Intent intent1=new Intent(getApplicationContext(),Categories.class);
+                startActivity(intent1);
+            }
+        });
     }
 }

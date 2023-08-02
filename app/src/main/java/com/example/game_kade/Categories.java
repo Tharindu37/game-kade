@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.view.WindowManager;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
@@ -33,17 +34,14 @@ public class Categories extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.activity_categories);
-
         categories=findViewById(R.id.lstCategories);
-
         // Construct the data source
         ArrayList<Category> arrayOfCategory = new ArrayList<>();
-
         //api call
         String url = "http://10.0.2.2:3000/categories";
         RequestQueue requestQueue = Volley.newRequestQueue(this);
-
         JsonArrayRequest jsonArrayRequest = new JsonArrayRequest(Request.Method.GET, url, null,
                 new Response.Listener<JSONArray>() {
                     @Override
@@ -57,9 +55,6 @@ public class Categories extends AppCompatActivity {
                                 int categoryId = categoryObject.getInt("id");
                                 String categoryName = categoryObject.getString("name");
                                 String categoryImage=categoryObject.getString("url");
-                                System.out.println("eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee"+categoryImage);
-                                // ... Process the data here as per your requirement
-//                                System.out.println("nameeeeeeeeeeeeeeeee"+categoryName);
                                 arrayOfCategory.add(new Category(categoryName,categoryImage,String.valueOf(categoryId)));
                             }
                             CategoryAdapter adapter=new CategoryAdapter(getApplicationContext(),arrayOfCategory);
@@ -78,7 +73,6 @@ public class Categories extends AppCompatActivity {
                 });
 
         requestQueue.add(jsonArrayRequest);
-
         //end api call
         categories.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
@@ -87,14 +81,11 @@ public class Categories extends AppCompatActivity {
                 Category selectedCategory=(Category) parent.getItemAtPosition(position);
                 // Now you can access the details of the selected category (e.g., name and URL)
                 String categoryId = selectedCategory.getId();
-
                 // Perform actions based on the selected category
                 // For example, you might want to display more details about the category or navigate to another activity
                 // You can use an Intent to pass data to another activity if needed
                 // Example: startActivity(new Intent(Categories.this, CategoryDetailsActivity.class).putExtra("category_name", categoryName));
-
                 // For now, let's just show a toast message with the category name
-//                Toast.makeText(Categories.this, "Clicked: " + categoryId, Toast.LENGTH_SHORT).show();
                 Intent intent=new Intent(getApplicationContext(), Items.class);
                 intent.putExtra("CATEGORY_ID",categoryId);
                 startActivity(intent);
