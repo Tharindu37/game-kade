@@ -24,21 +24,16 @@ public class CategoryAdapter extends ArrayAdapter<Category> {
     @NonNull
     @Override
     public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
-        //Get the data item for this postion
         Category category=getItem(position);
-        // Check if an existing view is being reused, otherwise inflate the view
         if (convertView == null) {
             convertView = LayoutInflater.from(getContext()).inflate(R.layout.categories, parent, false);
         }
-        // Lookup view for data population
+
         ImageView categoryImage = (ImageView)  convertView.findViewById(R.id.imgCategories);
         TextView name = (TextView) convertView.findViewById(R.id.txtCategories);
 
         Glide.with(convertView).load(category.url).into(categoryImage);
-        // Populate the data into the template view using the data object
         name.setText(category.name);
-//        url.setText(category.url);
-        // Return the completed view to render on screen
         return convertView;
     }
 }

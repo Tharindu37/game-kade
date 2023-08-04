@@ -32,8 +32,6 @@ public class ShopAdapter extends ArrayAdapter<Shop> {
 
         ImageView shopImage=convertView.findViewById(R.id.imgShops);
         TextView name= convertView.findViewById(R.id.txtShops);
-
-      System.out.println("urlllllllllllllllllllllllll"+shop.url);
         Glide.with(convertView).load(shop.url).into(shopImage);
         name.setText(shop.name);
         return  convertView;

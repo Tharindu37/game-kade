@@ -77,15 +77,8 @@ public class Categories extends AppCompatActivity {
         categories.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                //Get the selected category from the adapter
                 Category selectedCategory=(Category) parent.getItemAtPosition(position);
-                // Now you can access the details of the selected category (e.g., name and URL)
                 String categoryId = selectedCategory.getId();
-                // Perform actions based on the selected category
-                // For example, you might want to display more details about the category or navigate to another activity
-                // You can use an Intent to pass data to another activity if needed
-                // Example: startActivity(new Intent(Categories.this, CategoryDetailsActivity.class).putExtra("category_name", categoryName));
-                // For now, let's just show a toast message with the category name
                 Intent intent=new Intent(getApplicationContext(), Items.class);
                 intent.putExtra("CATEGORY_ID",categoryId);
                 startActivity(intent);

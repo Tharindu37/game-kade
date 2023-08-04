@@ -55,8 +55,7 @@ public class Shops extends AppCompatActivity {
                                 String shopImage=categoryObject.getString("url");
                                 String shopAddress=categoryObject.getString("address");
                                 String time=categoryObject.getString("time");
-                                System.out.println("nnnnnnnnnnnnnnnnnnnnnnnnnnnnn"+shopName);
-                                System.out.println("uuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuu"+shopImage);
+
                                 arrayOfShops.add(new Shop(shopId,shopName,shopAddress,time,shopImage));
                             }
                             ShopAdapter adapter=new ShopAdapter(getApplicationContext(),arrayOfShops);
